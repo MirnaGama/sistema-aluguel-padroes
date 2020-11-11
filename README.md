@@ -5,5 +5,4 @@ Sistema de Aluguel elaborado com Padrões de Projeto para AP2 de Programação A
 * Strategy
 * Observer
 * Adapter
-* ??
-* ??
+* Abstract Factory
