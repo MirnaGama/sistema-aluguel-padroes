@@ -10,9 +10,10 @@ public class Usuario {
 	private List<Aluguel> imoveisAlugados;
 	private List<Anuncio> imoveisAnunciados;
 	
-	public Usuario(String nome, String cpf) {
+	public Usuario(String nome, String email, String cpf) {
 		this.nome = nome;
 		this.cpf = cpf;
+		this.email = email;
 		this.imoveisAlugados = new ArrayList<Aluguel>();
 		this.imoveisAnunciados = new ArrayList<Anuncio>();
 	}
