@@ -4,21 +4,28 @@ import java.util.Date;
 
 public class Aluguel {
 
-	private Imovel imovelAlugado;
+	private Carro carro;
 	private Date dataAluguel;
 	private Date validade;
 	
-	public Aluguel(Imovel imovelAlugado, Date dataAluguel, Date validade) {
-		this.imovelAlugado = imovelAlugado;
+	public Aluguel(Carro carro, Date dataAluguel, Date validade) {
+		super();
+		this.carro = carro;
 		this.dataAluguel = dataAluguel;
 		this.validade = validade;
 	}
 	
-	public Imovel getImovelAlugado() {
-		return imovelAlugado;
+	public Carro getCarro() {
+		return carro;
 	}
-	public void setImovelAlugado(Imovel imovelAlugado) {
-		this.imovelAlugado = imovelAlugado;
+	public void setCarro(Carro carro) {
+		this.carro = carro;
+	}
+	public Date getDataAluguel() {
+		return dataAluguel;
+	}
+	public void setDataAluguel(Date dataAluguel) {
+		this.dataAluguel = dataAluguel;
 	}
 	public Date getValidade() {
 		return validade;
@@ -26,12 +33,7 @@ public class Aluguel {
 	public void setValidade(Date validade) {
 		this.validade = validade;
 	}
-
-	public Date getDataAluguel() {
-		return dataAluguel;
-	}
-
-	public void setDataAluguel(Date dataAluguel) {
-		this.dataAluguel = dataAluguel;
-	}
+	
+	
+	
 }

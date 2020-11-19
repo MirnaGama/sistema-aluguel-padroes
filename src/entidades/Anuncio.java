@@ -2,25 +2,28 @@ package entidades;
 
 public class Anuncio {
 
-	private Imovel imovelAnunciado;
+	private Carro carro;
 	private boolean finalizado; // se foi finalizado ou nao
 	
-	public Anuncio(Imovel imovelAnunciado, boolean finalizado) {
-		this.imovelAnunciado = imovelAnunciado;
+	public Anuncio(Carro carro, boolean finalizado) {
+		super();
+		this.carro = carro;
 		this.finalizado = finalizado;
 	}
 	
-	public Imovel getImovelAnunciado() {
-		return imovelAnunciado;
+	public Carro getCarro() {
+		return carro;
 	}
-	public void setImovelAnunciado(Imovel imovelAnunciado) {
-		this.imovelAnunciado = imovelAnunciado;
+	public void setCarro(Carro carro) {
+		this.carro = carro;
 	}
 	public boolean isFinalizado() {
 		return finalizado;
 	}
 	public void setFinalizado(boolean finalizado) {
 		this.finalizado = finalizado;
-	}	
+	}
+	
+	
 	
 }
