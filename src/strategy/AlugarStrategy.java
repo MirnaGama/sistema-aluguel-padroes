@@ -8,6 +8,6 @@ import entidades.Usuario;
 
 public interface AlugarStrategy {
 
-	public Aluguel alugar(Carro c, Usuario u, Date validade);
+	public Aluguel alugar(Carro c, Date validade);
 	
 }

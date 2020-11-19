@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import entidades.Usuario;
 import repositorio.UsuarioRepositorio;
+import strategy.AlugarAdaptado;
+import strategy.AlugarStrategy;
 
 public class Menu {
 
@@ -11,6 +13,7 @@ public class Menu {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		
 		while (true) {
 			System.out.println("1) Cadastrar Usuário \n2) Login");
 
@@ -55,5 +58,6 @@ public class Menu {
 		}
 
 	}
+	
 
 }

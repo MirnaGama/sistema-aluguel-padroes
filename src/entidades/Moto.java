@@ -9,7 +9,6 @@ public class Moto {
 	private String categoria;
 	
 	public Moto(String fabricante, String modelo, int ano, String cor, String categoria) {
-		super();
 		this.fabricante = fabricante;
 		this.modelo = modelo;
 		this.ano = ano;

@@ -10,8 +10,8 @@ import entidades.Usuario;
 public class AlugarCarroPopular implements AlugarStrategy {
 
 	@Override
-	public Aluguel alugar(Carro c, Usuario u, Date validade) {
-		// TO-DO -- CARRO POPULAR (20 REAIS POR DIA)
+	public Aluguel alugar(Carro c, Date validade) {
+		// CARRO POPULAR (20 REAIS POR DIA)
 		Date hoje = new Date();
 		
 		// conversao de data para pegar diferenca de dias
