@@ -7,29 +7,16 @@ import entidades.Aluguel;
 import entidades.Carro;
 import entidades.Moto;
 
-public class AlugarAdaptado {
+public class AlugarAdaptado extends AlugarContext {
 
-	AlugarStrategy strategy;
+	private AlugarMoto alugar;
 	
-	public void setStrategy(AlugarStrategy strategy) {
-		this.strategy = strategy;
-	}
-
-	public Aluguel executar(Carro c, Date validade) {
-		return strategy.alugar(c, validade);
+	public AlugarAdaptado(AlugarStrategy strategy) {
+		super(strategy);
 	}
 	
+	// PREMISSA -- TUDO RELACIONADO AO STRATEGY FOI RESTRITO, logo é necessario outro método para poder alugar uma moto
 	public Aluguel alugarMoto(Moto m, Date validade) {
-		        // MOTO
-				Date hoje = new Date();
-				
-				// conversao de data para pegar diferenca de dias
-				long diff = hoje.getTime() - validade.getTime(); 
-				long diffDays = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-				
-				double preco = diffDays * 10; // preco por dias
-				
-				Aluguel a = new Aluguel(m, hoje, validade, preco);
-				return a;
+		      return alugar.alugarMoto(m, validade);
 	}
 }
