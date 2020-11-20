@@ -27,9 +27,9 @@ public class AlugarAdaptado {
 				long diff = hoje.getTime() - validade.getTime(); 
 				long diffDays = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 				
-				double preco = diffDays * 20; // preco por dias
+				double preco = diffDays * 10; // preco por dias
 				
-				//Aluguel a = new Aluguel(m, hoje, validade, preco);
-				return null;
+				Aluguel a = new Aluguel(m, hoje, validade, preco);
+				return a;
 	}
 }
