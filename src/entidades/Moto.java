@@ -1,52 +1,14 @@
 package entidades;
 
-public class Moto {
+public class Moto extends Veiculo {
 
-	private String fabricante;
-	private String modelo;
-	private int ano;
-	private String cor;
 	private String categoria;
+	private String versao;
 	
-	public Moto(String fabricante, String modelo, int ano, String cor, String categoria) {
-		super();
-		this.fabricante = fabricante;
-		this.modelo = modelo;
-		this.ano = ano;
-		this.cor = cor;
+	public Moto(String fabricante, String modelo, int ano, String cor, String categoria, String versao) {
+		super(fabricante, modelo, ano, cor);
 		this.categoria = categoria;
-	}
-
-	public String getFabricante() {
-		return fabricante;
-	}
-
-	public void setFabricante(String fabricante) {
-		this.fabricante = fabricante;
-	}
-
-	public String getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
-
-	public int getAno() {
-		return ano;
-	}
-
-	public void setAno(int ano) {
-		this.ano = ano;
-	}
-
-	public String getCor() {
-		return cor;
-	}
-
-	public void setCor(String cor) {
-		this.cor = cor;
+		this.versao = versao;
 	}
 
 	public String getCategoria() {
@@ -56,5 +18,15 @@ public class Moto {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+
+	public String getVersao() {
+		return versao;
+	}
+
+	public void setVersao(String versao) {
+		this.versao = versao;
+	}
+	
+	
 
 }

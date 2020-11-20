@@ -4,24 +4,24 @@ import java.util.Date;
 
 public class Aluguel {
 
-	private Carro carro;
+	private Veiculo v;
 	private Date dataAluguel;
 	private Date validade;
 	private double preco;
 	
-	public Aluguel(Carro carro, Date dataAluguel, Date validade, double preco) {
+	public Aluguel(Veiculo v, Date dataAluguel, Date validade, double preco) {
 		super();
-		this.carro = carro;
+		this.v = v;
 		this.dataAluguel = dataAluguel;
 		this.validade = validade;
 		this.preco = preco;
 	}
 	
-	public Carro getCarro() {
-		return carro;
+	public Veiculo getVeiculo() {
+		return v;
 	}
-	public void setCarro(Carro carro) {
-		this.carro = carro;
+	public void setVeiculo(Veiculo v) {
+		this.v = v;
 	}
 	public Date getDataAluguel() {
 		return dataAluguel;
