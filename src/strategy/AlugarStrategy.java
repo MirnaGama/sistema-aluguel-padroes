@@ -7,6 +7,6 @@ import entidades.Carro;
 
 public interface AlugarStrategy {
 
-	public Aluguel alugar(Carro c, Date validade);
+	public Aluguel alugar(Carro c, int dias);
 	
 }

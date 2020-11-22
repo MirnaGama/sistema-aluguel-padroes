@@ -1,20 +1,18 @@
 package ui;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import entidades.*;
-import repositorio.AluguelRepositorio;
-import repositorio.UsuarioRepositorio;
-import strategy.AlugarAdaptado;
-import strategy.AlugarStrategy;
+import repositorio.*;
+import strategy.*;
 
 public class Menu {
 
 	private static UsuarioRepositorio usuarioRep = new UsuarioRepositorio();
 	private static AluguelRepositorio alugueisRep = new AluguelRepositorio();
 	private static List<Anuncio> anuncios = popularAnuncios();
-	private static AlugarStrategy strategy;
-	private static AlugarAdaptado alugarAdaptado = new AlugarAdaptado(strategy);
+	private static AlugarAdaptado alugarAdaptado;
 
 	static Scanner sc = new Scanner(System.in);
 
@@ -22,7 +20,7 @@ public class Menu {
 		
 		while (true) {
 			System.out.println("BEM VINDO AO ALUGUECAR!! ");
-			System.out.println("1) Cadastrar Usu�rio \n2) Login");
+			System.out.println("1) Cadastrar Usuario \n2) Login");
 
 			int escolha = sc.nextInt();
 
@@ -45,8 +43,8 @@ public class Menu {
 		if (u != null) {
 			while (sair){
 				System.out.println("Bem-vindo " + u.getNome() + "!");
-				System.out.println("Digite a opção que deseja: ");
-				System.out.println("1) Visualizar anúncios e alugar um veículo");
+				System.out.println("Digite a opcao que deseja: ");
+				System.out.println("1) Visualizar anuncios e alugar um veiculo");
 				System.out.println("2) Listar alugueis ");
 				System.out.println("3) Sair ");
 				int escolha = sc.nextInt();
@@ -63,25 +61,33 @@ public class Menu {
 				}
 			}
 		} else {
-			System.out.println("Ops! Usu�rio n�o cadastrado!");
+			System.out.println("Ops! Usuario nao cadastrado!");
 		}
 
 	}
 
 	private static void visualizarAnuncios(Usuario usuario) {
-		System.out.println("-------------ANÚNCIOS----------------");
+		System.out.println("-------------ANUNCIOS----------------");
 			for (Anuncio anuncio : anuncios) {
 				if(!anuncio.isAlugado()){
-					System.out.println(" Veículo: " + anuncio.getCarro().getFabricante() + " "  + anuncio.getCarro().getModelo() + " " +anuncio.getCarro().getAno() + " " + anuncio.getCarro().getCor());
-					System.out.println("Deseja alugar este veículo ?");
+					System.out.println(" Veiculo: " + anuncio.getCarro().getFabricante() + " "  + anuncio.getCarro().getModelo() + " " +anuncio.getCarro().getAno() + " " + anuncio.getCarro().getCor());
+					System.out.println("Deseja alugar este veiculo ?");
 					String alugar = sc.next();
 					if(alugar.equals("sim")){
-						System.out.println("Quantos dias você deseja passar com o veículo ?");
+						
+						String tipoAnuncio = anuncio.getCarro().getTipo();
+						if (tipoAnuncio.equalsIgnoreCase("LUXO")) {
+							alugarAdaptado = new AlugarAdaptado(new AlugarCarroLuxo());
+						} else if (tipoAnuncio.equalsIgnoreCase("POPULAR")) {
+							alugarAdaptado = new AlugarAdaptado(new AlugarCarroPopular());
+						}
+							
+						
+						System.out.println("Quantos dias voce deseja passar com o veiculo ?");
 						int dias = sc.nextInt();
-						Date hoje = new Date();
-						hoje.setTime(hoje.getTime() + dias);
-						Aluguel aluguel = alugarAdaptado.alugar(anuncio.getCarro(), hoje);
-						System.out.println("Confirma o aluguel do veículo por R$ " + aluguel.getPreco());
+						
+						Aluguel aluguel = alugarAdaptado.alugar(anuncio.getCarro(), dias);
+						System.out.println("Confirma o aluguel do veiculo por R$ " + aluguel.getPreco());
 						String confirma = sc.next();
 						if (confirma.equals("sim")){
 							alugueisRep.novoAluguel(usuario, aluguel);
@@ -101,11 +107,11 @@ public class Menu {
 		String cpf = sc.next();
 
 		if (usuarioRep.procurarPorCpf(cpf) != null) {
-			System.out.println("Ops! Usu�rio j� cadastrado!");
+			System.out.println("Ops! Usuario ja cadastrado!");
 		} else {
 			Usuario u = new Usuario(nome, email, cpf);
 			usuarioRep.inserir(u);
-			System.out.println("Usu�rio " + u.getNome() + " cadastrado com sucesso! :)");
+			System.out.println("Usuario " + u.getNome() + " cadastrado com sucesso! :)");
 		}
 
 	}

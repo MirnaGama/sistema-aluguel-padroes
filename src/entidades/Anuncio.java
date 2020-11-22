@@ -30,6 +30,7 @@ public class Anuncio {
     public void setAlugado(boolean alugado) {
         this.alugado = alugado;
     }
+    
 
 
 }
