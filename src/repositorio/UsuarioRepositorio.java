@@ -9,7 +9,7 @@ public class UsuarioRepositorio {
 	private ArrayList<Usuario> usuarios;
 	
 	public UsuarioRepositorio() {
-		usuarios = new ArrayList<Usuario>();
+		usuarios = new ArrayList<>();
 	}
 	
     public void inserir(Usuario usuario) {

@@ -6,6 +6,7 @@ public class Veiculo {
 	private String modelo;
 	private int ano;
 	private String cor;
+	private String tipo;
 	
 	public Veiculo(String fabricante, String modelo, int ano, String cor) {
 		super();
@@ -39,6 +40,16 @@ public class Veiculo {
 	public void setCor(String cor) {
 		this.cor = cor;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
+	
 	
 	
 }

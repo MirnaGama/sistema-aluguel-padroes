@@ -13,7 +13,7 @@ public class Usuario {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
-		this.locacoes = new ArrayList<Aluguel>();
+		this.locacoes = new ArrayList<>();
 	}
 	
 	public String getCpf() {
@@ -39,5 +39,11 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	public List<Aluguel> getLocacoes() {
+		return locacoes;
+	}
+
+	public void setLocacoes(List<Aluguel> locacoes) {
+		this.locacoes = locacoes;
+	}
 }

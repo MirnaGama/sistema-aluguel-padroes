@@ -2,28 +2,35 @@ package entidades;
 
 public class Anuncio {
 
-	private Carro carro;
-	private boolean finalizado; // se foi finalizado ou nao
-	
-	public Anuncio(Carro carro, boolean finalizado) {
-		super();
-		this.carro = carro;
-		this.finalizado = finalizado;
-	}
-	
-	public Carro getCarro() {
-		return carro;
-	}
-	public void setCarro(Carro carro) {
-		this.carro = carro;
-	}
-	public boolean isFinalizado() {
-		return finalizado;
-	}
-	public void setFinalizado(boolean finalizado) {
-		this.finalizado = finalizado;
-	}
-	
-	
-	
+    private Veiculo veiculo;
+    private boolean alugado; // se foi finalizado ou nao
+
+    public Anuncio() {
+        super();
+    }
+
+    public Anuncio(Veiculo veiculo, boolean alugado) {
+        super();
+        this.veiculo = veiculo;
+        this.alugado = alugado;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo v) {
+        this.veiculo = v;
+    }
+
+    public boolean isAlugado() {
+        return alugado;
+    }
+
+    public void setAlugado(boolean alugado) {
+        this.alugado = alugado;
+    }
+    
+
+
 }

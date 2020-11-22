@@ -13,8 +13,8 @@ public class AlugarContext {
 		this.strategy = strategy;
 	}
 	
-	public Aluguel alugar(Carro c, Date validade) {
-		return strategy.alugar(c, validade);
+	public Aluguel alugar(Carro c, int dias) {
+		return strategy.alugar(c, dias);
 	}
 	
 }
