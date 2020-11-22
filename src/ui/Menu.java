@@ -70,12 +70,12 @@ public class Menu {
 		System.out.println("-------------ANUNCIOS----------------");
 			for (Anuncio anuncio : anuncios) {
 				if(!anuncio.isAlugado()){
-					System.out.println(" Veiculo: " + anuncio.getCarro().getFabricante() + " "  + anuncio.getCarro().getModelo() + " " +anuncio.getCarro().getAno() + " " + anuncio.getCarro().getCor());
+					System.out.println(" Veiculo: " + anuncio.getVeiculo().getFabricante() + " "  + anuncio.getVeiculo().getModelo() + " " +anuncio.getVeiculo().getAno() + " " + anuncio.getVeiculo().getCor());
 					System.out.println("Deseja alugar este veiculo ?");
 					String alugar = sc.next();
 					if(alugar.equals("sim")){
 						
-						String tipoAnuncio = anuncio.getCarro().getTipo();
+						String tipoAnuncio = anuncio.getVeiculo().getTipo();
 						if (tipoAnuncio.equalsIgnoreCase("LUXO")) {
 							alugarAdaptado = new AlugarAdaptado(new AlugarCarroLuxo());
 						} else if (tipoAnuncio.equalsIgnoreCase("POPULAR")) {
@@ -86,13 +86,19 @@ public class Menu {
 						System.out.println("Quantos dias voce deseja passar com o veiculo ?");
 						int dias = sc.nextInt();
 						
-						Aluguel aluguel = alugarAdaptado.alugar(anuncio.getCarro(), dias);
-						System.out.println("Confirma o aluguel do veiculo por R$ " + aluguel.getPreco());
-						String confirma = sc.next();
-						if (confirma.equals("sim")){
-							alugueisRep.novoAluguel(usuario, aluguel);
-							anuncio.setAlugado(true);
+						// SE O ANUNCIO FOR DE CARRO
+						if (anuncio.getVeiculo() instanceof Carro) {
+						    Carro carroAnuncio = (Carro) anuncio.getVeiculo();
+						    
+						    Aluguel aluguel = alugarAdaptado.alugar(carroAnuncio, dias);
+							System.out.println("Confirma o aluguel do veiculo por R$ " + aluguel.getPreco());
+							String confirma = sc.next();
+							if (confirma.equals("sim")){
+								alugueisRep.novoAluguel(usuario, aluguel);
+								anuncio.setAlugado(true);
+							}
 						}
+						
 					}
 				}
 			}
@@ -122,49 +128,49 @@ public class Menu {
 		//SANDERO
 		Anuncio anuncioSandero = new Anuncio();
 		CarroPopular sandero = new CarroPopular("renault", "sandero", 2016, "branco");
-		anuncioSandero.setCarro(sandero);
+		anuncioSandero.setVeiculo(sandero);
 		anuncioSandero.setAlugado(false);
 		anuncios.add(anuncioSandero);
 
 		//GOL
 		Anuncio anuncioGol = new Anuncio();
 		CarroPopular gol = new CarroPopular("volkswagen", "gol", 2019, "preto");
-		anuncioSandero.setCarro(gol);
+		anuncioSandero.setVeiculo(gol);
 		anuncioSandero.setAlugado(false);
 		anuncios.add(anuncioGol);
 
 		//ONIX
 		Anuncio anuncioOnix = new Anuncio();
 		CarroPopular onix = new CarroPopular("chevrolet", "onix", 2018, "prata");
-		anuncioSandero.setCarro(onix);
+		anuncioSandero.setVeiculo(onix);
 		anuncioSandero.setAlugado(false);
 		anuncios.add(anuncioOnix);
 
 		//FORD Ka
 		Anuncio anuncioKa = new Anuncio();
 		CarroPopular ka = new CarroPopular("ford", "ka", 2020, "vermelho");
-		anuncioSandero.setCarro(ka);
+		anuncioSandero.setVeiculo(ka);
 		anuncioSandero.setAlugado(false);
 		anuncios.add(anuncioKa);
 
 		//Mercedes
 		Anuncio anuncioMercedes = new Anuncio();
 		CarroLuxo gla = new CarroLuxo("Mercedes", "GLA", 2020, "cinza");
-		anuncioSandero.setCarro(gla);
+		anuncioSandero.setVeiculo(gla);
 		anuncioSandero.setAlugado(false);
 		anuncios.add(anuncioMercedes);
 
 		//BMW
 		Anuncio anuncioBMW = new Anuncio();
 		CarroLuxo bmw = new CarroLuxo("BMW", "X1", 2020, "preto");
-		anuncioSandero.setCarro(bmw);
+		anuncioSandero.setVeiculo(bmw);
 		anuncioSandero.setAlugado(false);
 		anuncios.add(anuncioBMW);
 
 		//SW4
 		Anuncio anuncioSw4 = new Anuncio();
 		CarroLuxo sw4 = new CarroLuxo("Toyota", "SW4", 2020, "branco");
-		anuncioSandero.setCarro(sw4);
+		anuncioSandero.setVeiculo(sw4);
 		anuncioSandero.setAlugado(false);
 		anuncios.add(anuncioSw4);
 		return anuncios;
