@@ -1,7 +1,5 @@
 package strategy;
 
-import java.util.Date;
-
 import entidades.Aluguel;
 import entidades.Carro;
 
