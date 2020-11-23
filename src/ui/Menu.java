@@ -16,6 +16,7 @@ public class Menu {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        popularUsuarios();
         boolean sair = true;
         while (sair) {
             System.out.println("BEM VINDO AO ALUGUECAR!! ");
@@ -177,6 +178,19 @@ public class Menu {
         anuncios.add(anuncioSw4);
         return anuncios;
     }
+
+	private static void popularUsuarios() {
+
+        Usuario amanda = new Usuario("Amanda", "amanda@gmail.com", "123456789");
+        usuarioRep.inserir(amanda);
+
+        Usuario maria = new Usuario("Maria", "mariazinha@gmail.com", "123");
+        usuarioRep.inserir(maria);
+
+        Usuario joao = new Usuario("João", "joao@gmail.com", "12345");
+        usuarioRep.inserir(joao);
+
+	}
 
 
 }
