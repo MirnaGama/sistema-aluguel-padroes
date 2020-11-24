@@ -25,7 +25,6 @@ public class Anuncio implements Observado {
 
     public void setVeiculo(Veiculo v) {
         this.veiculo = v;
-        System.out.println(v.getModelo());
         notificar();
     }
 
