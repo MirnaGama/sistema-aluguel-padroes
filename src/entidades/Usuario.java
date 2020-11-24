@@ -45,7 +45,7 @@ public class Usuario implements Observador {
 	public void listarNotificacoes() {
 		if (this.notificacoes.size() == 0) {
 			System.out.println("\n--------------------------------------------------------------");
-			System.out.println("Nenhuma notificacao encontrada.");
+			System.out.println("Nenhuma notificacao nova encontrada.");
 			System.out.println("--------------------------------------------------------------\n");
 		} else {
 			System.out.println("\n--------------------------------------------------------------");
@@ -53,12 +53,13 @@ public class Usuario implements Observador {
 				System.out.println(s);
 			}
 			System.out.println("--------------------------------------------------------------\n");
+			this.notificacoes = new ArrayList<String>(); // reseta para a chegada de novas notificações
 		}
 	}
 
 	@Override
 	public void notificarAnuncio(Veiculo veiculo) {
-		this.notificacoes.add("Um novo veiculo do tipo "+veiculo.getTipo()+", "+
+		this.notificacoes.add("Novo veiculo do tipo "+veiculo.getTipo()+", "+
 							  veiculo.getModelo() +
 							  ", " + veiculo.getAno() +
 							  ", de cor " +
