@@ -7,6 +7,7 @@ import factory.*;
 import obs.Observador;
 import repositorio.*;
 import strategy.*;
+import utils.CriarVeiculo;
 
 public class Menu {
 
@@ -19,9 +20,13 @@ public class Menu {
     // OBSERVER
     private static List<Observador> usuariosObservadores;
 
-    static Scanner sc = new Scanner(System.in);
+    static Scanner sc;
 
-    public static void main(String[] args) {
+    public Menu(Scanner sc) {
+		this.sc = sc;
+	}
+
+	public void menuInicial() {
         
         usuariosObservadores = popularUsuarios();
         anuncios = popularAnuncios();
@@ -245,7 +250,7 @@ public class Menu {
 			case 1:
 				fabricaAnuncio = new FabricaAnuncioCarroPopular();
 				
-				CarroPopular cA = criarCarroPopular();
+				CarroPopular cA = CriarVeiculo.retornarCarroPopular(sc);
 
 				anuncio = fabricaAnuncio.criaAnuncio(cA, usuariosObservadores);
 				anuncios.add(anuncio);
@@ -255,7 +260,7 @@ public class Menu {
 			case 2:
 			    fabricaAnuncio = new FabricaAnuncioCarroLuxo();
 			    
-			    CarroLuxo cL = criarCarroLuxo();
+			    CarroLuxo cL = CriarVeiculo.retornarCarroLuxo(sc);
 
 				anuncio = fabricaAnuncio.criaAnuncio(cL, usuariosObservadores);
 				anuncios.add(anuncio);
@@ -265,7 +270,7 @@ public class Menu {
 			case 3:
 				fabricaAnuncio = new FabricaAnuncioMoto();
 				
-				Moto m = criarMoto();
+				Moto m = CriarVeiculo.retornarMoto(sc);
 
 				anuncio = fabricaAnuncio.criaAnuncio(m, usuariosObservadores);
 				anuncios.add(anuncio);
@@ -283,61 +288,4 @@ public class Menu {
 		
 	}
 	
-	private static CarroLuxo criarCarroLuxo() {
-		System.out.println("Digite o fabricante: ");
-		String fabricante = sc.next();
-		
-		System.out.println("Digite o modelo: ");
-		String modelo = sc.next();
-		
-		System.out.println("Digite o ano: ");
-		int ano = sc.nextInt();
-		
-		System.out.println("Digite a cor: ");
-		String cor = sc.next();
-		
-		CarroLuxo c = new CarroLuxo(fabricante, modelo, ano, cor);
-		return c;
-	}
-	
-	private static CarroPopular criarCarroPopular() {
-		System.out.println("Digite o fabricante: ");
-		String fabricante = sc.next();
-		
-		System.out.println("Digite o modelo: ");
-		String modelo = sc.next();
-		
-		System.out.println("Digite o ano: ");
-		int ano = sc.nextInt();
-		
-		System.out.println("Digite a cor: ");
-		String cor = sc.next();
-		
-		CarroPopular c = new CarroPopular(fabricante, modelo, ano, cor);
-		return c;
-	}
-	
-	private static Moto criarMoto() {
-		System.out.println("Digite o fabricante: ");
-		String fabricante = sc.next();
-		
-		System.out.println("Digite o modelo: ");
-		String modelo = sc.next();
-		
-		System.out.println("Digite o ano: ");
-		int ano = sc.nextInt();
-		
-		System.out.println("Digite a cor: ");
-		String cor = sc.next();
-		
-		System.out.println("Digite a categoria: ");
-		String categoria = sc.next();
-		
-		System.out.println("Digite a versao: ");
-		String versao = sc.next();
-		
-		Moto m = new Moto(fabricante, modelo, ano, cor, categoria, versao);
-		return m;
-	} 
-
 }
