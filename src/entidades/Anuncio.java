@@ -8,7 +8,7 @@ import obs.Observador;
 
 public class Anuncio implements Observado {
 
-	private List<Observador> observadores;
+	public List<Observador> observadores;
     private Veiculo veiculo;
     private boolean alugado; // se foi finalizado ou nao
     private double taxaPadrao; 
@@ -16,7 +16,7 @@ public class Anuncio implements Observado {
 
     public Anuncio() {
         super();
-        this.observadores = new ArrayList<Observador>();
+        this.observadores = new ArrayList<>();
     }
 
     public Anuncio(Veiculo veiculo, boolean alugado) {
@@ -61,23 +61,22 @@ public class Anuncio implements Observado {
 	@Override
 	public void addObservador(List<Observador> o) {
 		for (Observador observador : o) {
-            observadores.add(observador);
+            this.observadores.add(observador);
         }
-		
 	}
 
 	@Override
 	public void removerObservador(Observador o) {
-		 int index = observadores.indexOf(o);
+		 int index = this.observadores.indexOf(o);
 	        if (index > -1) {
-	            observadores.remove(o);
+	            this.observadores.remove(o);
 	        }	
 	}
 
 	@Override
 	public void notificar() {
-		for (Observador o : observadores) {
-            o.notificarAnuncio(this.getVeiculo());
+		for (Observador observador : this.observadores) {
+            observador.notificarAnuncio(this.getVeiculo());
         }
 	}
 

@@ -43,13 +43,14 @@ public class Usuario implements Observador {
 	}
 	
 	public void listarNotificacoes() {
-		if (notificacoes.size() == 0) {
+		System.out.println(this.notificacoes);
+		if (this.notificacoes.size() == 0) {
 			System.out.println("\n-------------------------------");
-			System.out.println("Nenhuma notificação encontrada.");
+			System.out.println("Nenhuma notificaï¿½ï¿½o encontrada.");
 			System.out.println("-------------------------------\n");
 		} else {
 			System.out.println("-------------------------------\n");
-			for (String s : notificacoes) {
+			for (String s : this.notificacoes) {
 				System.out.println(s);
 			}
 			System.out.println("-------------------------------\n");
@@ -58,12 +59,15 @@ public class Usuario implements Observador {
 
 	@Override
 	public void notificarAnuncio(Veiculo veiculo) {
+		System.out.println("anunciooooooo");
 		this.notificacoes.add("Um novo veiculo do tipo "+veiculo.getTipo()+", "+
 							  veiculo.getModelo() +
 							  ", " + veiculo.getAno() +
 							  ", de cor " +
 							  veiculo.getCor() +
 							  " esta disponivel para aluguel!");
+
+		System.out.println(this.notificacoes);
 	}
 	
 }

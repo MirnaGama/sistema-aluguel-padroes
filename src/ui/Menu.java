@@ -63,7 +63,7 @@ public class Menu {
                 System.out.println("\nDigite a opcao que deseja: ");
                 System.out.println("1) Visualizar anuncios e alugar um veiculo");
                 System.out.println("2) Listar alugueis ");
-                System.out.println("3) Listar notificações ");
+                System.out.println("3) Listar notificaï¿½ï¿½es ");
                 System.out.println("4) Parar de receber novos anuncios ");
                 System.out.println("5) Sair ");
        
@@ -80,7 +80,7 @@ public class Menu {
                         break;
                     case 4:
                         usuariosObservadores.remove(u);
-                        System.out.println("\nPronto! Você não receberá mais nenhum anuncio.\n");
+                        System.out.println("\nPronto! Vocï¿½ nï¿½o receberï¿½ mais nenhum anuncio.\n");
                         break;
                     case 5:
                         sair = false;
@@ -161,59 +161,46 @@ public class Menu {
 
     private static List<Anuncio> popularAnuncios() {
         List<Anuncio> anuncios = new ArrayList<>();
-        
+        Anuncio anuncio;
         // CARRO POPULAR
         fabricaAnuncio = new FabricaAnuncioCarroPopular();
         
         //SANDERO
         Veiculo sandero = new CarroPopular("renault", "sandero", 2016, "branco");
-        Anuncio anuncio = fabricaAnuncio.criaAnuncio(sandero);
-        anuncio.addObservador(usuariosObservadores);
+        anuncio = fabricaAnuncio.criaAnuncio(sandero, usuariosObservadores);
         anuncios.add(anuncio);
 
         //GOL
-        anuncio = new Anuncio();
         Veiculo gol = new CarroPopular("volkswagen", "gol", 2019, "preto");
-        anuncio = fabricaAnuncio.criaAnuncio(gol);
-        anuncio.addObservador(usuariosObservadores);
+        anuncio = fabricaAnuncio.criaAnuncio(gol, usuariosObservadores);
         anuncios.add(anuncio);
 
         //ONIX
-        anuncio = new Anuncio();
         Veiculo onix = new CarroPopular("chevrolet", "onix", 2018, "prata");
-        anuncio = fabricaAnuncio.criaAnuncio(onix);
-        anuncio.addObservador(usuariosObservadores);
+        anuncio = fabricaAnuncio.criaAnuncio(onix, usuariosObservadores);
         anuncios.add(anuncio);
 
         //FORD Ka
-        anuncio = new Anuncio();
         Veiculo ka = new CarroPopular("ford", "ka", 2020, "vermelho");
-        anuncio = fabricaAnuncio.criaAnuncio(ka);
-        anuncio.addObservador(usuariosObservadores);
+        anuncio = fabricaAnuncio.criaAnuncio(ka, usuariosObservadores);
         anuncios.add(anuncio);
 
         // CARRO LUXO
         fabricaAnuncio = new FabricaAnuncioCarroLuxo();
         
         //Mercedes
-        anuncio = new Anuncio();
         Veiculo gla = new CarroLuxo("Mercedes", "GLA", 2020, "cinza");
-        anuncio = fabricaAnuncio.criaAnuncio(gla);
-        anuncio.addObservador(usuariosObservadores);
+        anuncio = fabricaAnuncio.criaAnuncio(gla, usuariosObservadores);
         anuncios.add(anuncio);
 
         //BMW
-        anuncio = new Anuncio();
         Veiculo bmw = new CarroLuxo("BMW", "X1", 2020, "preto");
-        anuncio = fabricaAnuncio.criaAnuncio(bmw);
-        anuncio.addObservador(usuariosObservadores);
+        anuncio = fabricaAnuncio.criaAnuncio(bmw, usuariosObservadores);
         anuncios.add(anuncio);
 
         //SW4
-        anuncio = new Anuncio();
         Veiculo sw4 = new CarroLuxo("Toyota", "SW4", 2020, "branco");
-        anuncio = fabricaAnuncio.criaAnuncio(sw4);
-        anuncio.addObservador(usuariosObservadores);
+        anuncio = fabricaAnuncio.criaAnuncio(sw4, usuariosObservadores);
         anuncios.add(anuncio);
         
         return anuncios;
@@ -228,11 +215,11 @@ public class Menu {
 
         Usuario maria = new Usuario("Maria", "123");
         usuarioRep.inserir(maria);
-        usuariosObservadores.add(amanda);
+        usuariosObservadores.add(maria);
 
         Usuario joao = new Usuario("Joao", "12345");
         usuarioRep.inserir(joao);
-        usuariosObservadores.add(amanda);
+        usuariosObservadores.add(joao);
         
         return usuariosObservadores;
 	}
@@ -242,7 +229,7 @@ public class Menu {
 		
 		while (!sair) {
 			
-			System.out.println("\nEscolha o tipo de veículo: \n1) Carro Popular \n2) Carro de Luxo \n3) Moto");
+			System.out.println("\nEscolha o tipo de veï¿½culo: \n1) Carro Popular \n2) Carro de Luxo \n3) Moto");
 			int escolha = sc.nextInt();
 			
 			Anuncio anuncio = new Anuncio();
@@ -253,9 +240,8 @@ public class Menu {
 				fabricaAnuncio = new FabricaAnuncioCarroPopular();
 				
 				CarroPopular cA = criarCarroPopular();
-				
-				anuncio = fabricaAnuncio.criaAnuncio(cA);
-				anuncio.addObservador(usuariosObservadores);
+
+				anuncio = fabricaAnuncio.criaAnuncio(cA, usuariosObservadores);
 				anuncios.add(anuncio);
 				
 				break;
@@ -264,9 +250,8 @@ public class Menu {
 			    fabricaAnuncio = new FabricaAnuncioCarroLuxo();
 			    
 			    CarroLuxo cL = criarCarroLuxo();
-			    
-				anuncio = fabricaAnuncio.criaAnuncio(cL);
-				anuncio.addObservador(usuariosObservadores);
+
+				anuncio = fabricaAnuncio.criaAnuncio(cL, usuariosObservadores);
 				anuncios.add(anuncio);
 				
 				break;
@@ -275,9 +260,8 @@ public class Menu {
 				fabricaAnuncio = new FabricaAnuncioMoto();
 				
 				Moto m = criarMoto();
-				
-				anuncio = fabricaAnuncio.criaAnuncio(m);
-				anuncio.addObservador(usuariosObservadores);
+
+				anuncio = fabricaAnuncio.criaAnuncio(m, usuariosObservadores);
 				anuncios.add(anuncio);
 				
 				break;
