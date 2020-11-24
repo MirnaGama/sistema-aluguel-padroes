@@ -13,7 +13,7 @@ public class Menu {
     private static UsuarioRepositorio usuarioRep = new UsuarioRepositorio();
     private static AluguelRepositorio alugueisRep = new AluguelRepositorio();
     private static List<Anuncio> anuncios;
-    private static AlugarAdaptado alugarAdaptado;
+    private static AlugarAdaptado alugarAdaptado = new AlugarAdaptado(null);
     private static FabricaAbstrataAnuncio fabricaAnuncio;
     
     // OBSERVER
@@ -124,6 +124,7 @@ public class Menu {
                             alugueisRep.novoAluguel(usuario, aluguel);
                             anuncio.setAlugado(true);
                         }
+                     // SE O ANUNCIO FOR DE MOTO
                     } else if (anuncio.getVeiculo() instanceof Moto) {
                     	Moto motoAnuncio = (Moto) anuncio.getVeiculo();
                     	
@@ -203,6 +204,11 @@ public class Menu {
         anuncio = fabricaAnuncio.criaAnuncio(sw4, usuariosObservadores);
         anuncios.add(anuncio);
         
+        // MOTOS
+        fabricaAnuncio = new FabricaAnuncioMoto();
+        Veiculo suzuki = new Moto("Suzuki", "DL650", 2014, "preta", "V-Storm", "ABS");
+        anuncio = fabricaAnuncio.criaAnuncio(suzuki, usuariosObservadores);
+        anuncios.add(anuncio);
         return anuncios;
     }
 

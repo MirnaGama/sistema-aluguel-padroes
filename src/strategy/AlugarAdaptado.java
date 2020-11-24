@@ -13,10 +13,11 @@ public class AlugarAdaptado extends AlugarContext {
 	
 	public AlugarAdaptado(AlugarStrategy strategy) {
 		super(strategy);
+		this.alugar = new AlugarMoto();
 	}
 	
 	// PREMISSA -- TUDO RELACIONADO AO STRATEGY FOI RESTRITO, logo é necessario outro método para poder alugar uma moto
 	public Aluguel alugarMoto(Moto m, int dias, double taxa) {
-		      return alugar.alugarMoto(m, dias, taxa);
+		      return this.alugar.alugarMoto(m, dias, taxa);
 	}
 }

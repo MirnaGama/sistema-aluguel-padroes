@@ -65,7 +65,6 @@ public class Usuario implements Observador {
 							  veiculo.getCor() +
 							  " esta disponivel para aluguel!");
 
-		//System.out.println(this.notificacoes);
 	}
 	
 }
