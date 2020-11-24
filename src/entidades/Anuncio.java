@@ -4,6 +4,8 @@ public class Anuncio {
 
     private Veiculo veiculo;
     private boolean alugado; // se foi finalizado ou nao
+    private double taxaPadrao; 
+    private String tipo;
 
     public Anuncio() {
         super();
@@ -30,7 +32,21 @@ public class Anuncio {
     public void setAlugado(boolean alugado) {
         this.alugado = alugado;
     }
-    
 
+	public double getTaxaPadrao() {
+		return taxaPadrao;
+	}
+
+	public void setTaxaPadrao(double taxaPadrao) {
+		this.taxaPadrao = taxaPadrao;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
 }
