@@ -1,5 +1,6 @@
 package strategy;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -8,15 +9,17 @@ import entidades.Moto;
 
 public class AlugarMoto {
 
-	public Aluguel alugarMoto(Moto m, Date validade) {
-        // MOTO
+	public Aluguel alugarMoto(Moto m, int dias, double taxa) {
+		System.out.println("Alugando moto ...");
+		
 		Date hoje = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(hoje);
+		cal.add(Calendar.DATE, dias);
+		Date validade = cal.getTime();
 		
-		// conversao de data para pegar diferenca de dias
-		long diff = hoje.getTime() - validade.getTime(); 
-		long diffDays = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-		
-		double preco = diffDays * 10; // preco por dias
+		double preco = (dias * 20);
+		preco += preco * taxa;// preco por dias + taxa
 		
 		Aluguel a = new Aluguel(m, hoje, validade, preco);
 		return a;

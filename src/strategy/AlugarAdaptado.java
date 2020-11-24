@@ -16,7 +16,7 @@ public class AlugarAdaptado extends AlugarContext {
 	}
 	
 	// PREMISSA -- TUDO RELACIONADO AO STRATEGY FOI RESTRITO, logo é necessario outro método para poder alugar uma moto
-	public Aluguel alugarMoto(Moto m, Date validade) {
-		      return alugar.alugarMoto(m, validade);
+	public Aluguel alugarMoto(Moto m, int dias, double taxa) {
+		      return alugar.alugarMoto(m, dias, taxa);
 	}
 }

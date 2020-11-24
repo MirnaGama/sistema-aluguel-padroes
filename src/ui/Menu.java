@@ -3,6 +3,7 @@ package ui;
 import java.util.*;
 
 import entidades.*;
+import factory.*;
 import repositorio.*;
 import strategy.*;
 
@@ -12,15 +13,18 @@ public class Menu {
     private static AluguelRepositorio alugueisRep = new AluguelRepositorio();
     private static List<Anuncio> anuncios = popularAnuncios();
     private static AlugarAdaptado alugarAdaptado;
+    private static FabricaAbstrataAnuncio fabricaAnuncio;
 
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         popularUsuarios();
         boolean sair = true;
+        
+        System.out.println("BEM VINDO AO ALUGUECAR!! ");
+        
         while (sair) {
-            System.out.println("BEM VINDO AO ALUGUECAR!! ");
-            System.out.println("1) Cadastrar Usuario \n2) Login \n3)Sair");
+            System.out.println("\n1) Cadastrar Usuario \n2) Login \n3) Criar Anuncio \n4) Sair");
 
             int escolha = sc.nextInt();
 
@@ -31,6 +35,9 @@ public class Menu {
                 case 2:
                     login();
                     break;
+                case 3:
+                	criarAnuncioAdmin();
+                	break;
                 default:
                     sair = false;
                     break;
@@ -73,7 +80,7 @@ public class Menu {
         System.out.println("-------------ANUNCIOS----------------");
         for (Anuncio anuncio : anuncios) {
             if (!anuncio.isAlugado()) {
-                System.out.println(" Veiculo: " + anuncio.getVeiculo().getFabricante() + " " + anuncio.getVeiculo().getModelo() + " " + anuncio.getVeiculo().getAno() + " " + anuncio.getVeiculo().getCor());
+                System.out.println(" Veiculo: " + anuncio.getVeiculo().getFabricante() + " " + anuncio.getVeiculo().getModelo() + " " + anuncio.getVeiculo().getAno() + " " + anuncio.getVeiculo().getCor() + ", tipo: " + anuncio.getTipo());
                 System.out.println("Deseja alugar este veiculo ?");
                 String alugar = sc.next();
                 if (alugar.equals("sim")) {
@@ -93,13 +100,24 @@ public class Menu {
                     if (anuncio.getVeiculo() instanceof Carro) {
                         Carro carroAnuncio = (Carro) anuncio.getVeiculo();
 
-                        Aluguel aluguel = alugarAdaptado.alugar(carroAnuncio, dias);
-                        System.out.println("Confirma o aluguel do veiculo por R$ " + aluguel.getPreco());
+                        Aluguel aluguel = alugarAdaptado.alugar(carroAnuncio, dias, anuncio.getTaxaPadrao());
+                        System.out.println("Confirma o aluguel deste carro por R$ " + aluguel.getPreco());
                         String confirma = sc.next();
                         if (confirma.equals("sim")) {
                             alugueisRep.novoAluguel(usuario, aluguel);
                             anuncio.setAlugado(true);
                         }
+                    } else if (anuncio.getVeiculo() instanceof Moto) {
+                    	Moto motoAnuncio = (Moto) anuncio.getVeiculo();
+                    	
+                    	Aluguel aluguel = alugarAdaptado.alugarMoto(motoAnuncio, dias, anuncio.getTaxaPadrao());
+                    	System.out.println("Confirma o aluguel desta moto por R$ " + aluguel.getPreco());
+                    	String confirma = sc.next();
+                        if (confirma.equals("sim")) {
+                            alugueisRep.novoAluguel(usuario, aluguel);
+                            anuncio.setAlugado(true);
+                        }
+                    	
                     }
 
                 }
@@ -110,15 +128,13 @@ public class Menu {
     public static void cadastrarUsuario() {
         System.out.println("Digite seu nome: ");
         String nome = sc.next();
-        System.out.println("Digite seu email: ");
-        String email = sc.next();
         System.out.println("Digite seu cpf: ");
         String cpf = sc.next();
 
         if (usuarioRep.procurarPorCpf(cpf) != null) {
             System.out.println("Ops! Usuario ja cadastrado!");
         } else {
-            Usuario u = new Usuario(nome, email, cpf);
+            Usuario u = new Usuario(nome, cpf);
             usuarioRep.inserir(u);
             System.out.println("Usuario " + u.getNome() + " cadastrado com sucesso! :)");
         }
@@ -127,7 +143,6 @@ public class Menu {
 
     private static List<Anuncio> popularAnuncios() {
         List<Anuncio> anuncios = new ArrayList<>();
-
         //SANDERO
         Anuncio anuncioSandero = new Anuncio();
         Veiculo sandero = new CarroPopular("renault", "sandero", 2016, "branco");
@@ -181,15 +196,118 @@ public class Menu {
 
 	private static void popularUsuarios() {
 
-        Usuario amanda = new Usuario("Amanda", "amanda@gmail.com", "123456789");
+        Usuario amanda = new Usuario("Amanda", "123456789");
         usuarioRep.inserir(amanda);
 
-        Usuario maria = new Usuario("Maria", "mariazinha@gmail.com", "123");
+        Usuario maria = new Usuario("Maria", "123");
         usuarioRep.inserir(maria);
 
-        Usuario joao = new Usuario("JoÃ£o", "joao@gmail.com", "12345");
+        Usuario joao = new Usuario("Joao", "12345");
         usuarioRep.inserir(joao);
 
+	}
+	
+	public static void criarAnuncioAdmin() {
+		boolean sair = false;
+		
+		while (!sair) {
+			
+			System.out.println("\nEscolha o tipo de veículo: \n1) Carro Popular \n2) Carro de Luxo \n3) Moto");
+			int escolha = sc.nextInt();
+			
+			Anuncio anuncio = new Anuncio();
+			
+			switch (escolha) {
+			
+			case 1:
+				fabricaAnuncio = new FabricaAnuncioCarroPopular();
+				
+				CarroPopular cA = criarCarroPopular();
+				
+				anuncio = fabricaAnuncio.criaAnuncio(cA);
+				anuncios.add(anuncio);
+				
+			case 2:
+			    fabricaAnuncio = new FabricaAnuncioCarroLuxo();
+			    
+			    CarroLuxo cL = criarCarroLuxo();
+			    
+				anuncio = fabricaAnuncio.criaAnuncio(cL);
+				anuncios.add(anuncio);
+			
+			case 3:
+				fabricaAnuncio = new FabricaAnuncioMoto();
+				
+				Moto m = criarMoto();
+				
+				anuncio = fabricaAnuncio.criaAnuncio(m);
+				anuncios.add(anuncio);
+			}
+			
+			System.out.println("Deseja criar outro anuncio?");
+			String resposta = sc.next();
+			if (resposta.equalsIgnoreCase("nao")) {
+				sair = true;
+			}
+		}
+		
+	}
+	
+	private static CarroLuxo criarCarroLuxo() {
+		System.out.println("Digite o fabricante: ");
+		String fabricante = sc.next();
+		
+		System.out.println("Digite o modelo: ");
+		String modelo = sc.next();
+		
+		System.out.println("Digite o ano: ");
+		int ano = sc.nextInt();
+		
+		System.out.println("Digite a cor: ");
+		String cor = sc.next();
+		
+		CarroLuxo c = new CarroLuxo(fabricante, modelo, ano, cor);
+		return c;
+	}
+	
+	private static CarroPopular criarCarroPopular() {
+		System.out.println("Digite o fabricante: ");
+		String fabricante = sc.next();
+		
+		System.out.println("Digite o modelo: ");
+		String modelo = sc.next();
+		
+		System.out.println("Digite o ano: ");
+		int ano = sc.nextInt();
+		
+		System.out.println("Digite a cor: ");
+		String cor = sc.next();
+		
+		CarroPopular c = new CarroPopular(fabricante, modelo, ano, cor);
+		return c;
+	}
+	
+	private static Moto criarMoto() {
+		System.out.println("Digite o fabricante: ");
+		String fabricante = sc.next();
+		
+		System.out.println("Digite o modelo: ");
+		String modelo = sc.next();
+		
+		System.out.println("Digite o ano: ");
+		int ano = sc.nextInt();
+		
+		System.out.println("Digite a cor: ");
+		String cor = sc.next();
+		
+		System.out.println("Digite a categoria: ");
+		String categoria = sc.next();
+		
+		System.out.println("Digite a versao: ");
+		String versao = sc.next();
+		
+		Moto m = new Moto(fabricante, modelo, ano, cor, categoria, versao);
+		return m;
 	}
 
 

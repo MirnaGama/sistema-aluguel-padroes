@@ -9,6 +9,8 @@ public class Moto extends Veiculo {
 		super(fabricante, modelo, ano, cor);
 		this.categoria = categoria;
 		this.versao = versao;
+		
+		this.setTipo("MOTO");
 	}
 
 	public String getCategoria() {

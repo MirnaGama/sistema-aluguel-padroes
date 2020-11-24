@@ -11,8 +11,8 @@ public class AlugarContext {
 		this.strategy = strategy;
 	}
 	
-	public Aluguel alugar(Carro c, int dias) {
-		return strategy.alugar(c, dias);
+	public Aluguel alugar(Carro c, int dias, double taxa) {
+		return strategy.alugar(c, dias, taxa);
 	}
 	
 }
