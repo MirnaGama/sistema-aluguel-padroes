@@ -63,7 +63,7 @@ public class Menu {
                 System.out.println("\nDigite a opcao que deseja: ");
                 System.out.println("1) Visualizar anuncios e alugar um veiculo");
                 System.out.println("2) Listar alugueis ");
-                System.out.println("3) Listar notifica��es ");
+                System.out.println("3) Listar notificacoes ");
                 System.out.println("4) Parar de receber novos anuncios ");
                 System.out.println("5) Sair ");
        
@@ -80,7 +80,7 @@ public class Menu {
                         break;
                     case 4:
                         usuariosObservadores.remove(u);
-                        System.out.println("\nPronto! Voc� n�o receber� mais nenhum anuncio.\n");
+                        System.out.println("\nPronto! Voce nao recebera mais nenhum anuncio.\n");
                         break;
                     case 5:
                         sair = false;
@@ -229,7 +229,7 @@ public class Menu {
 		
 		while (!sair) {
 			
-			System.out.println("\nEscolha o tipo de ve�culo: \n1) Carro Popular \n2) Carro de Luxo \n3) Moto");
+			System.out.println("\nEscolha o tipo de veiculo: \n1) Carro Popular \n2) Carro de Luxo \n3) Moto");
 			int escolha = sc.nextInt();
 			
 			Anuncio anuncio = new Anuncio();
@@ -332,7 +332,6 @@ public class Menu {
 		
 		Moto m = new Moto(fabricante, modelo, ano, cor, categoria, versao);
 		return m;
-	}
-
+	} 
 
 }

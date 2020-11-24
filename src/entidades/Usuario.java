@@ -43,23 +43,21 @@ public class Usuario implements Observador {
 	}
 	
 	public void listarNotificacoes() {
-		System.out.println(this.notificacoes);
 		if (this.notificacoes.size() == 0) {
-			System.out.println("\n-------------------------------");
-			System.out.println("Nenhuma notifica��o encontrada.");
-			System.out.println("-------------------------------\n");
+			System.out.println("\n--------------------------------------------------------------");
+			System.out.println("Nenhuma notificacao encontrada.");
+			System.out.println("--------------------------------------------------------------\n");
 		} else {
-			System.out.println("-------------------------------\n");
+			System.out.println("\n--------------------------------------------------------------");
 			for (String s : this.notificacoes) {
 				System.out.println(s);
 			}
-			System.out.println("-------------------------------\n");
+			System.out.println("--------------------------------------------------------------\n");
 		}
 	}
 
 	@Override
 	public void notificarAnuncio(Veiculo veiculo) {
-		System.out.println("anunciooooooo");
 		this.notificacoes.add("Um novo veiculo do tipo "+veiculo.getTipo()+", "+
 							  veiculo.getModelo() +
 							  ", " + veiculo.getAno() +
@@ -67,7 +65,7 @@ public class Usuario implements Observador {
 							  veiculo.getCor() +
 							  " esta disponivel para aluguel!");
 
-		System.out.println(this.notificacoes);
+		//System.out.println(this.notificacoes);
 	}
 	
 }

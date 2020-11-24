@@ -77,7 +77,7 @@ public class Anuncio implements Observado {
 	public void notificar() {
 		for (Observador observador : this.observadores) {
             observador.notificarAnuncio(this.getVeiculo());
-        }
+        } 
 	}
 
 }
